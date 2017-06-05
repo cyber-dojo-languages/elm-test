@@ -1,0 +1,20 @@
+sudo: required
+services: docker
+
+script:
+    - SCRIPT=run_build_image.sh
+    - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
+    - chmod +x ./${SCRIPT}
+
+    - REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
+    - echo "PASSING ARG=:${REPO_URL}:"
+    - ./${SCRIPT} ${REPO_URL}
+
+    # push image to dockerhub
+    #- docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
+
+    - ORG_NAME=cyberdojofoundation
+    - TAG_NAME=$(basename ${TRAVIS_REPO_SLUG})
+    - NAME=${ORG_NAME}/${TAG_NAME}
+    - echo "docker push ${NAME}"
+    #- docker push ${NAME}
