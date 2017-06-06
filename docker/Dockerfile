@@ -11,6 +11,8 @@ WORKDIR /tmp
 # Running elm-test populates /tmp/tests/elm-stuff/*
 # which needs to be copied into each avatar's
 # sandbox folder
+
+# This line is currently failing
 RUN elm-test
 
 COPY red_amber_green.rb /usr/local/bin
