@@ -1,0 +1,26 @@
+Success! Compiled 63 modules.
+Successfully generated /tmp/elm_test_11757-48-1hbnrvk.js
+
+elm-test
+--------
+
+Running 7 tests. To reproduce these results, run: elm-test --seed 546259558
+
+↓ Hitch Hikers Guide to the Galaxy and Samples of Test Suite
+↓ Life the Universe and Everything
+✗ Answer
+
+    54
+    ╷
+    │ Expect.equal
+    ╵
+    42
+
+
+
+TEST RUN FAILED
+
+Duration: 205 ms
+Passed:   6
+Failed:   1
+

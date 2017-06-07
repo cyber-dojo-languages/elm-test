@@ -1,0 +1,10 @@
+Detected errors in 1 module.
+-- NAMING ERROR --------------------------------------------- ./../src/Hiker.elm
+
+Cannot find variable `sdsd`
+
+5|   6 * 7 sdsd
+           ^^^^
+
+
+Compilation failed for Main.elm
