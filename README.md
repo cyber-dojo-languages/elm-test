@@ -4,7 +4,7 @@ Genuinely fails to build elm-test docker image.
 Output you get is as follows. Any help appreciated...
 
 ```
-Step 1/9 : FROM cyberdojofoundation/elm-0.18.0
+Step 1/9 : FROM cyberdojofoundation/elm:0.18.0
  ---> e9c5f5cc242a
 Step 2/9 : MAINTAINER Jon Jagger <jon@jaggersoft.com>
  ---> Running in 2e09b5950f80
