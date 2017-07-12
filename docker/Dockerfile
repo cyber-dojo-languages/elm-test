@@ -1,11 +1,11 @@
-FROM       cyberdojofoundation/elm:0.18.0
-MAINTAINER Jon Jagger <jon@jaggersoft.com>
+FROM  cyberdojofoundation/elm:0.18.0
+LABEL maintainer=jon@jaggersoft.com
 
 RUN npm install -g elm-test
 
-COPY tests/Main.elm  /tmp/tests/Main.elm
-COPY tests/Tests.elm  /tmp/tests/Tests.elm
-COPY tests/elm-package.json  /tmp/tests/elm-package.json
+COPY tests/Main.elm         /tmp/tests/Main.elm
+COPY tests/Tests.elm        /tmp/tests/Tests.elm
+COPY tests/elm-package.json /tmp/tests/elm-package.json
 
 WORKDIR /tmp
 # Running elm-test populates /tmp/tests/elm-stuff/*
