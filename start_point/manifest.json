@@ -1,5 +1,7 @@
 
 {
+  "display_name": "Elm, ElmTest",
+
   "visible_filenames": [
    "src/Hiker.elm",
    "tests/Tests.elm",
@@ -8,9 +10,9 @@
    "cyber-dojo.sh"
   ],
 
+  "image_name": "cyberdojofoundation/elm_test",
+
   "filename_extension" : ".elm",
 
-  "display_name": "Elm, ElmTest",
-
-  "image_name": "cyberdojofoundation/elm_test"
+  "runner_choice": "stateless"
 }
