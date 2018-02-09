@@ -1,4 +1,4 @@
-FROM  cyberdojofoundation/elm:0.18.0
+FROM  cyberdojofoundation/elm
 LABEL maintainer=jon@jaggersoft.com
 
 RUN npm install -g elm-test
