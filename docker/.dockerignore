@@ -1,0 +1,4 @@
+*
+!install.sh
+!warmup
+!cache_compiled_dependencies.sh

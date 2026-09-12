@@ -1,0 +1,35 @@
+FROM ghcr.io/cyber-dojo-languages/elm:0d223b4
+LABEL maintainer=jon@jaggersoft.com
+
+COPY install.sh .
+RUN ./install.sh && rm ./install.sh
+
+# A kata has no network, so a package it is not given here is one it can never
+# fetch, and compiling those packages is also where a test run spends nearly
+# all its time. A throwaway project downloads them and compiles them, and the
+# script keeps the compiled result where a kata can copy it; the script says
+# which parts are kept and why the rest are not.
+#
+# It is compiled in /sandbox, the directory a kata runs in, because elm records
+# the absolute path of every source file it compiled and gives up on the whole
+# cache when one of them is not there to look at. Compiled anywhere else, every
+# path recorded is one no kata will ever have, and the cache would cost a copy
+# and save nothing.
+#
+# warmup/elm.json names the same package versions as the start-point's
+# elm.json, and has to keep naming them: a kata asking for a version that was
+# never cached has no network to go and get it.
+COPY warmup /sandbox
+COPY cache_compiled_dependencies.sh /etc/elm/
+RUN cd /sandbox \
+ && sh /etc/elm/cache_compiled_dependencies.sh \
+ && cd / \
+ && rm -rf /sandbox/src /sandbox/tests /sandbox/elm.json /sandbox/elm-stuff \
+ && rm -rf /etc/elm/cache_compiled_dependencies.sh
+
+# The cache is built by root here and used by sandbox when a kata runs, so it
+# has to belong to sandbox. Reading it is not enough: elm takes a lock on
+# ELM_HOME/<version>/packages/lock on every run, cached or not, and a directory
+# it cannot create that file in ends the run with an MVar error from inside the
+# compiler rather than with anything a learner could act on.
+RUN chown -R sandbox /etc/elm
