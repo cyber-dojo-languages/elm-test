@@ -16,8 +16,9 @@ RUN ./install.sh && rm ./install.sh
 # path recorded is one no kata will ever have, and the cache would cost a copy
 # and save nothing.
 #
-# The script resolves the newest test package into warmup/elm.json and prints
-# the result. The start-point's elm.json has to name those same versions: a
+# The script resolves the newest test package into warmup/elm.json and writes
+# the result to /start_point_sync/. The start-point's elm.json has to name
+# those same versions: a
 # kata asking for a version that was never cached has no network to go and
 # get it.
 COPY warmup /sandbox

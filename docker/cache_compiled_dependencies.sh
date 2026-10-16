@@ -43,17 +43,17 @@ add_test_framework()
 # elm-explorations/test that works with the rest is resolved here, along with
 # whatever it needs. A kata has no network, so the start-point's elm.json has
 # to name exactly what is cached, and cyber-dojo.sh uses the cache only when
-# the two are identical. The resolved elm.json is printed between markers in
-# the build log for copying into the start-point.
+# the two are identical. The resolved elm.json is written to
+# /start_point_sync/, which the propagation bot copies into the start-point
+# whenever this image's versions change.
 #
 # An application's elm.json has to name the exact compiler that builds it, and
 # the base image follows the newest elm, so the version is set from the
 # compiler before anything is resolved.
 sed -i "s/\"elm-version\": \"[^\"]*\"/\"elm-version\": \"$(elm --version)\"/" elm.json
 yes | elm-test install elm-explorations/test
-echo '--- start-point elm.json ---'
-cat elm.json
-echo '--- end start-point elm.json ---'
+mkdir -p /start_point_sync
+cp elm.json /start_point_sync/elm.json
 
 readonly TEST_VERSION=$(sed -n 's|.*"elm-explorations/test": "\(.*\)".*|\1|p' elm.json)
 if [ -z "${TEST_VERSION}" ]; then
