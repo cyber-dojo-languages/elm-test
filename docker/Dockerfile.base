@@ -1,4 +1,4 @@
-FROM ghcr.io/cyber-dojo-languages/elm:0d223b4
+FROM ghcr.io/cyber-dojo-languages/elm:4487f1b
 LABEL maintainer=jon@jaggersoft.com
 
 COPY install.sh .
@@ -16,9 +16,10 @@ RUN ./install.sh && rm ./install.sh
 # path recorded is one no kata will ever have, and the cache would cost a copy
 # and save nothing.
 #
-# warmup/elm.json names the same package versions as the start-point's
-# elm.json, and has to keep naming them: a kata asking for a version that was
-# never cached has no network to go and get it.
+# The script resolves the newest test package into warmup/elm.json and prints
+# the result. The start-point's elm.json has to name those same versions: a
+# kata asking for a version that was never cached has no network to go and
+# get it.
 COPY warmup /sandbox
 COPY cache_compiled_dependencies.sh /etc/elm/
 RUN cd /sandbox \

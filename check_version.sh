@@ -30,11 +30,11 @@ check_version()
 # The compiler is checked here as well as in the base image it comes from,
 # because it is the pairing that has to hold: elm-test refuses to work with a
 # compiler whose version it was not built for.
-check_version elm      0.19.2   'elm --version'
-check_version elm-test 0.19.2-1 'elm-test --version'
+check_version elm      0.19.3   'elm --version'
+check_version elm-test 0.19.3-0 'elm-test --version'
 
-# The test framework itself, which npm neither installs nor can bump. It is
-# pinned in docker/warmup/elm.json, and the start-point's own elm.json has to
-# ask for this same version: it is the only one compiled into the image, and a
-# kata has no network to fetch another.
-check_version elm-explorations/test 2.2.1 'ls /etc/elm/home/0.19.2/packages/elm-explorations/test'
+# The test framework itself, which npm does not install. The image resolves
+# its newest release into docker/warmup/elm.json, and the start-point's own
+# elm.json has to ask for this same version: it is the only one compiled into
+# the image, and a kata has no network to fetch another.
+check_version elm-explorations/test 2.2.1 'ls /etc/elm/home/0.19.3/packages/elm-explorations/test'
